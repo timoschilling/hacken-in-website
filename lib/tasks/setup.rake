@@ -23,4 +23,16 @@ namespace :setup do
       puts "User created"
     end
   end
+
+  desc "copy example config files"
+  task :config do
+    configs = {
+      "config/database.yml_example" => "config/database.yml",
+      "config/twitter.yml_example" => "config/twitter.yml",
+      "config/initializers/devise.rb_example" => "config/initializers/devise.rb"
+    }
+    configs.each do |src, des|
+      FileUtils.cp src, des
+    end
+  end
 end
